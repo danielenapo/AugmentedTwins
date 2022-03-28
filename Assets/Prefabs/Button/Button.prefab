@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873141446951426151}
+  - component: {fileID: -8814191883348415942}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8814191883348415942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528562905546064605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25801166f1dcbcf4484bea439d759380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 0}
 --- !u!1 &1234546217957010959
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +152,7 @@ GameObject:
   - component: {fileID: 2011082090472694018}
   - component: {fileID: 3241987080695280748}
   - component: {fileID: 1725967206366591761}
+  - component: {fileID: 3507427459521670379}
   m_Layer: 0
   m_Name: Background
   m_TagString: button
@@ -222,3 +237,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2945152036637818477}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3507427459521670379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945152036637818477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894fc1d7fe19be64ea8eea9919660c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

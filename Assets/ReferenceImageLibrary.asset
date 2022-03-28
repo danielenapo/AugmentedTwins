@@ -23,5 +23,15 @@ MonoBehaviour:
       m_GuidHigh: 928249307381855930
     m_Size: {x: 0.08, y: 0.08}
     m_SpecifySize: 1
-    m_Name: light
+    m_Name: Button
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5379788970366337056
+      m_GuidHigh: 13350329047003915913
+    m_SerializedTextureGuid:
+      m_GuidLow: 5446191473572145902
+      m_GuidHigh: 1421015278963006376
+    m_Size: {x: 0.142, y: 0.2239803}
+    m_SpecifySize: 1
+    m_Name: Data
     m_Texture: {fileID: 0}

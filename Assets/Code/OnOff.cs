@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems; //to access ar raycast
 using UnityEngine.UI;
-using TMPro; //for debugging text box
 
 public class OnOff : MonoBehaviour
 {
-    public GameObject buttonText;
     private Vector2 touchPosition = default;
-    public Camera m_MainCamera;
+    private Camera m_MainCamera;
 
+	void Start()
+	{
+        m_MainCamera = Camera.main;
+	}
 
-    void Update()
+	void Update()
     {
         if (Input.touchCount > 0)
         {
