@@ -6,12 +6,8 @@ using UnityEngine.XR.ARFoundation;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracker : MonoBehaviour
 {
-   /* [SerializeField]
-    private GameObject welcomePanel;
 
-    [SerializeField]
-    private Button dismissButton;
-
+    /*
     [SerializeField]
     private Text imageTrackedText;*/
 
@@ -29,7 +25,7 @@ public class ImageTracker : MonoBehaviour
 
     void Awake()
     {
-        //dismissButton.onClick.AddListener(Dismiss);
+        //InterfaceBuilder builder = GetComponent<InterfaceBuilder>();
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
 
         // setup all game objects in dictionary
@@ -37,6 +33,7 @@ public class ImageTracker : MonoBehaviour
         {
             GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
             newARObject.name = arObject.name;
+            newARObject.SetActive(false);
             arObjects.Add(arObject.name, newARObject);
         }
     }
@@ -51,7 +48,6 @@ public class ImageTracker : MonoBehaviour
         m_TrackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged;
     }
 
-    //private void Dismiss() => welcomePanel.SetActive(false);
 
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
@@ -100,7 +96,7 @@ public class ImageTracker : MonoBehaviour
             }
         }
     }
-
+    /*
     private void OnGUI()
     {
         var fontSize = 50;
@@ -112,5 +108,5 @@ public class ImageTracker : MonoBehaviour
         GUILayout.BeginArea(new Rect(margin, Screen.height - margin * 2, Screen.width - margin * 2, Screen.height - margin * 2)); //draws ui on the bottom of the screen
 
         GUILayout.Label(m_State);
-    }
+    }*/
 }

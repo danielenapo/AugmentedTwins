@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems; //to access ar raycast
-using UnityEngine.UI;
 
 public class OnOff : MonoBehaviour
 {
