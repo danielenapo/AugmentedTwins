@@ -33,7 +33,8 @@ public class InterfaceBuilder : MonoBehaviour
 		float offset = 0;
 		foreach( var element in interfaces){
 			position.x += offset*10;
-			GameObject newGameobject= Instantiate(element.Value, position ,this.gameObject.transform.rotation);
+			GameObject newGameobject= Instantiate(element.Value, position, this.gameObject.transform.rotation);
+			newGameobject.transform.Rotate(new Vector3(90, 0, 0));
 			newGameobject.transform.parent = this.gameObject.transform;
 			offset+=0.018f;
 			Debug.Log("Instantiated " + element.Key+ " at position: "+ position +"[deb]");
