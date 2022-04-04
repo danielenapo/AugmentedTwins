@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class sliderValue : MonoBehaviour
+public class SliderValue : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    string sliderTextString = "0";
+    public Text sliderText; // public is needed to ensure it's available to be assigned in the inspector.
 
-    // Update is called once per frame
-    void Update()
+    public void textUpdate(float textUpdateNumber)
     {
-        
+        sliderTextString = textUpdateNumber.ToString();
+        sliderText.text = "VALUE: "+sliderTextString;
     }
 }
