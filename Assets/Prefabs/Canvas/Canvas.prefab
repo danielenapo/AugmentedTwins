@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
   button: {fileID: 5567270654187652575, guid: 3126801965c984b46849cf9d87cdd86f, type: 3}
   slider: {fileID: 3399066335057778983, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
   labelText: {fileID: 3416105830699867126}
-  offsetSize: 5
+  offsetSize: 1.5
 --- !u!1 &3190765096143053651
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ RectTransform:
   m_GameObject: {fileID: 3787178874440768659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 5695830775081486397}
   m_Father: {fileID: 0}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3787178874440768659}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2743313360185836704
 MonoBehaviour:
   m_ObjectHideFlags: 0
