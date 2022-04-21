@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CoAPClientTest : MonoBehaviour
 {
     Text textData;
-    const string pluginName = "com.example.coapplugin.GETClient";
+    const string pluginName = "com.example.coapplugin.SimpleClient";
     //const string pluginName = "com.example.coapplugin.HelloWorld";
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
@@ -24,29 +24,36 @@ public class CoAPClientTest : MonoBehaviour
         }
     }
 
-    public static AndroidJavaObject PluginInstance
+    /*public static AndroidJavaObject PluginInstance
     {
         get
         {
             if (_pluginInstance == null)
             {
-                _pluginInstance = PluginClass.CallStatic<AndroidJavaObject>("getInstance");//CORREGGI TYPO getinstaNce
+                _pluginInstance = PluginClass.CallStatic<AndroidJavaObject>("getInstance");
             }
             return _pluginClass;
         }
-    }
+    }*/
 
     void Start()
     {
-        // Find the Text UI object attached to the game object this script is attached to
         textData = gameObject.GetComponent<Text>();
-        // Make the call using JNI to the Java Class and write out the response (or write 'Invalid Response From JNI' if there was a problem).
-        //textData.text = CaptiveReality.Jni.Util.StaticCall("sayHello", "Invalid Response From JNI", "com.example.coapplugin.HelloWorld");
-        Debug.Log("[DEB] calling the plugin");
-        string responseText=PluginInstance.Call<string>("getResponse", ip, resource);
+        string responseText= callPlugin();
+        Debug.Log("[DEB] response retourned: " + responseText);
         textData.text = responseText;
-        //textData.text = PluginClass.CallStatic<string>("sayHello") + "\n"+ip+"/"+resource;
     }
 
+    public string callPlugin()
+	{
+        Debug.Log("[DEB] calling the plugin");
+        /*if (Application.platform == RuntimePlatform.Android)
+            return PluginInstance.Call<String>("getResponse", ip, resource);
+        else
+            return "wrong platform";*/
+        return PluginClass.CallStatic<String>("getResponse", ip, resource);
+
+        //textData.text = PluginClass.CallStatic<string>("sayHello") + "\n"+ip+"/"+resource;
+    }
 
 }
