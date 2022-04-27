@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
 /*
- * riempie il canvas con diversi tipi di prefab UI (es bottone, slider, data, ...),
- * in base ai valori della discovery CoAP
+ * fill the canvas with different types of interfaces (for example button, data, slider, ...)
+ * depending on the values obtained by the CoAP discovery
  */
+
+//TO DO: IMPLEMENTARE PROXY PATTERN PER CENTRALIZZARE LE RICHIESTE AL PLUGIN
 public class CanvasBuilder : MonoBehaviour
 {
 	private Dictionary<string, GameObject> interfaces = new Dictionary<string, GameObject>();
@@ -40,20 +42,19 @@ public class CanvasBuilder : MonoBehaviour
 	{
 		this.sizeX = sizeX;
 		offsetSize /= 5;
-		getInterfaces();
+		addInterfaces();
 		setLabelText();
 		instantiateInterfaces();
-		this.gameObject.transform.Rotate(90, 0, 0);
 		resize();
 	}
 	// function to retrieve interfaces associated to the image (available CoAP resources), and fills the interfaces list
-	public void getInterfaces()
+	public void addInterfaces()
 	{
-	//dovrebbe chiamare una classe che fa le discovery
-	elements.Add(data);
-	elements.Add(button);
-	elements.Add(slider);
-	Debug.Log("added interfaces [deb]");
+		//dovrebbe chiamare una classe che fa le discovery
+		elements.Add(data);
+		elements.Add(button);
+		elements.Add(slider);
+		//Debug.Log("added interfaces [deb]");
 	}
 
 	//sets labelText valuem and changes font size according to the string length
@@ -82,9 +83,10 @@ public class CanvasBuilder : MonoBehaviour
 	//rerizes canvas according to the image size
 	public void resize()
 	{
-		Debug.Log("(DEB) width value: " + sizeX);
+		this.gameObject.transform.Rotate(90, 0, 0);
+		//Debug.Log("(DEB) width value: " + sizeX);
 		this.gameObject.transform.localScale=Vector3.Scale(this.gameObject.transform.localScale,new Vector3(sizeX, sizeX, sizeX));
-		Debug.Log("(DEB) resized! -> scale: " + this.gameObject.transform.localScale);
+		//Debug.Log("(DEB) resized! -> scale: " + this.gameObject.transform.localScale);
 
 	}
 

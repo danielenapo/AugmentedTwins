@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Off
+  m_Text: Add Capsules
 --- !u!1 &5567270654187652575
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,19 +200,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5654511684190182858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7097825946323051229}
-        m_TargetAssemblyTypeName: ButtonValue, Assembly-CSharp
-        m_MethodName: changeText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7097825946323051229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,5 +213,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811fd37fd9e54e846b47176b0a49ad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mytext: {fileID: 6076039947920630477}
-  counter: 0
+  ip: 192.168.0.225
+  resource: coffee

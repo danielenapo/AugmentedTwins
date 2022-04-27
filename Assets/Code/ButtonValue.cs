@@ -5,19 +5,33 @@ using UnityEngine.UI;
 
 public class ButtonValue : MonoBehaviour
 {
+	const string pluginName = "com.example.coapplugin.PostGetClient";
+	static AndroidJavaClass _pluginClass;
+	static AndroidJavaObject _pluginInstance;
+	public string ip, resource;
 
-    public Text mytext = null;
-    public int counter = 0;
-    public void changeText()
-    {
-        counter++;
-        if (counter % 2 == 1)
-        {
-            mytext.text = "On";
-        }
-        else
-        {
-            mytext.text = "Off";
-        }
-    }
+	public static AndroidJavaClass PluginClass
+	{
+		get
+		{
+			if (_pluginClass == null)
+			{
+				_pluginClass = new AndroidJavaClass(pluginName);
+			}
+			return _pluginClass;
+		}
+	}
+
+	void Start()
+	{
+		Button button = this.gameObject.GetComponent<Button>();
+		button.onClick.AddListener(TaskOnClick);
+	}
+
+	void TaskOnClick()
+	{
+		string response = PluginClass.CallStatic<string>("request", ip, resource, "post");
+		Debug.Log("[DEB] RISULTATO POST -> " + response);
+	}
+
 }

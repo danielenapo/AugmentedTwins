@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,11 @@ using UnityEngine.UI;
 public class CoAPClientTest : MonoBehaviour
 {
     Text textData;
-    const string pluginName = "com.example.coapplugin.SimpleClient";
-    //const string pluginName = "com.example.coapplugin.HelloWorld";
+    const string pluginName = "com.example.coapplugin.PostGetClient";
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
     public string ip, resource;
+    //private TaskCompletionSource<string> responseText;
 
     public static AndroidJavaClass PluginClass
 	{
@@ -24,36 +25,38 @@ public class CoAPClientTest : MonoBehaviour
         }
     }
 
-    /*public static AndroidJavaObject PluginInstance
-    {
-        get
-        {
-            if (_pluginInstance == null)
-            {
-                _pluginInstance = PluginClass.CallStatic<AndroidJavaObject>("getInstance");
-            }
-            return _pluginClass;
-        }
-    }*/
-
     void Start()
     {
         textData = gameObject.GetComponent<Text>();
-        string responseText= callPlugin();
-        Debug.Log("[DEB] response retourned: " + responseText);
-        textData.text = responseText;
+        /*responseText = new TaskCompletionSource<string>();
+        //fa partire la chiamata al plugin
+        Task.Run(async () =>
+         {
+             Debug.Log("DEB task started");
+             responseText.SetResult(await callPlugin());
+         });
+        //quando il plugin ha smesso di eseguire, imposto il valore di ritorno come testo del prefab
+        responseText.Task.ConfigureAwait(true).GetAwaiter().OnCompleted(() =>
+        {
+            Debug.Log("DEB Task completed");
+            textData.text = responseText.Task.Result;
+        });*/
+        textData.text = callPlugin();
+
     }
 
-    public string callPlugin()
+	/*public async Task<string> callPlugin()
 	{
-        Debug.Log("[DEB] calling the plugin");
-        /*if (Application.platform == RuntimePlatform.Android)
-            return PluginInstance.Call<String>("getResponse", ip, resource);
-        else
-            return "wrong platform";*/
-        return PluginClass.CallStatic<String>("getResponse", ip, resource);
+        string response = PluginClass.CallStatic<String>("getResponse", ip, resource);
+        //Debug.Log("[DEB] response retourned: " + responseText);
+        return response;
+    }*/
 
-        //textData.text = PluginClass.CallStatic<string>("sayHello") + "\n"+ip+"/"+resource;
+	string callPlugin()
+	{
+        string response = PluginClass.CallStatic<String>("request", ip, resource, "get");
+        //Debug.Log("[DEB] response retourned: " + responseText);
+        return response;
     }
 
 }
