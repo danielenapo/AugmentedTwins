@@ -8,8 +8,6 @@ using UnityEngine.XR.ARFoundation;
  * fill the canvas with different types of interfaces (for example button, data, slider, ...)
  * depending on the values obtained by the CoAP discovery
  */
-
-//TO DO: IMPLEMENTARE PROXY PATTERN PER CENTRALIZZARE LE RICHIESTE AL PLUGIN
 public class CanvasBuilder : MonoBehaviour
 {
 	private Dictionary<string, GameObject> interfaces = new Dictionary<string, GameObject>();
@@ -51,7 +49,7 @@ public class CanvasBuilder : MonoBehaviour
 	public void addInterfaces()
 	{
 		//dovrebbe chiamare una classe che fa le discovery
-		elements.Add(data);
+		//elements.Add(data);
 		elements.Add(button);
 		elements.Add(slider);
 		//Debug.Log("added interfaces [deb]");
@@ -68,7 +66,7 @@ public class CanvasBuilder : MonoBehaviour
 	public void instantiateInterfaces()
 	{
 		Vector3 thisPosition = this.gameObject.transform.position;
-		thisPosition.y += offsetSize;
+		//thisPosition.y += offsetSize;
 		//float offset = offsetSize;
 		foreach (GameObject element in elements)
 		{

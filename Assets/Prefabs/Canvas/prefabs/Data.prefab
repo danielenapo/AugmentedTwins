@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 31100685140774307}
   - component: {fileID: 3809353741012708291}
   - component: {fileID: 97511169195950779}
-  - component: {fileID: 6945924620718364100}
+  - component: {fileID: 8558980618179486756}
   m_Layer: 5
   m_Name: Data
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Waiting for response...
---- !u!114 &6945924620718364100
+--- !u!114 &8558980618179486756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,5 +92,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab620eb2dec1004eaa36f74a1510ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 192.168.0.225
-  resource: coffee
