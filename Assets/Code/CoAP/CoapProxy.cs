@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
     const string pluginName = "com.example.coapplugin.PostGetClient";
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
-    public string ip;
+    private string ip;
     private GameObject monitor;
 
     public static AndroidJavaClass PluginClass
@@ -34,17 +36,40 @@ public class CoapProxy : MonoBehaviour, CoapManager
 
 	public string get(string resource)
 	{
-        Debug.Log("[DEB] got a get call");
-        string response = PluginClass.CallStatic<string>("request", ip, resource, "get");
+        string response = PluginClass.CallStatic<string>("get", ip, resource);
         return response;
     }
 
     public void post(string resource)
 	{
-        string status = PluginClass.CallStatic<string>("request", ip, resource, "post");
+        string status = PluginClass.CallStatic<string>("post", ip, resource);
         Debug.Log("[DEB] Status post request: " + status);
         monitor.GetComponent<Text>().text = get(resource);
     }
+
+    public Dictionary<string, string> discover()
+    {
+        string response = PluginClass.CallStatic<string>("discover", ip);
+        Dictionary<string, string> resourcesDict = new Dictionary<string, string>();
+        response = response.Substring(1, response.Length - 2);
+        resourcesDict = response.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+               .Select(part => part.Split('='))
+               .ToDictionary(split => split[0], split => split[1]);
+
+        //DEBUG
+        Debug.Log("[DEB] DISCOVER TO DICTIONARY -> ");
+        foreach (KeyValuePair<string, string> entry in resourcesDict)
+        {
+            Debug.Log("KEY: " + entry.Key + " ,VALUE: " + entry.Value);
+        }
+
+        return resourcesDict;
+    }
+
+    public void setIp(String ip)
+	{
+        this.ip = ip;
+	}
 }
 
 /*
@@ -55,4 +80,5 @@ public interface CoapManager
 {
     public string get(string resource);
     public void post(string resource);
+    public Dictionary<string, string> discover();
 }

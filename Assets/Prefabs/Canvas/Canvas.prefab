@@ -90,11 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8fbf29d1d86f24ab695ec9ba46c4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coapProxy: {fileID: 0}
   data: {fileID: 2769939987278777162, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
   button: {fileID: 5567270654187652575, guid: 3126801965c984b46849cf9d87cdd86f, type: 3}
   slider: {fileID: 3399066335057778983, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
   labelText: {fileID: 3416105830699867126}
   offsetSize: 1.5
+  ip: 192.168.0.225
 --- !u!114 &1361067442536757808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f98bbd7109ced8499869daf9a4135f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ip: 192.168.0.225
 --- !u!1 &3190765096143053651
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2743313360185836704
 MonoBehaviour:
   m_ObjectHideFlags: 0

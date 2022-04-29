@@ -12,11 +12,15 @@ public class CanvasBuilder : MonoBehaviour
 {
 	private Dictionary<string, GameObject> interfaces = new Dictionary<string, GameObject>();
 	private ArrayList elements = new ArrayList();
+	private float sizeX;
+	private Dictionary<string, string> discoveryDict;
+	private CoapProxy coapProxy;
+	
 	public GameObject data, button, slider;
 	public Text labelText;
 	public float offsetSize;
-	private float sizeX;
-	//private ARTrackedImageManager imageManager;
+	public string ip;
+
 
 
 	//CI STAREBBE FARE UN TEMPLATE/FACADE PATTERN
@@ -34,7 +38,11 @@ public class CanvasBuilder : MonoBehaviour
 	}
 	public void initialize(float sizeX) //testing
 	{ }*/
-
+	private void Awake()
+	{
+		coapProxy = this.gameObject.GetComponent<CoapProxy>();
+		coapProxy.setIp(ip);
+	}
 
 	public void initialize(float sizeX)
 	{
@@ -46,11 +54,17 @@ public class CanvasBuilder : MonoBehaviour
 		resize();
 	}
 	// function to retrieve interfaces associated to the image (available CoAP resources), and fills the interfaces list
+	// after doing a coap discovery, it associates to each actuator a button.
 	public void addInterfaces()
 	{
-		//dovrebbe chiamare una classe che fa le discovery
-		//elements.Add(data);
-		elements.Add(button);
+		discoveryDict = coapProxy.discover();
+		foreach (KeyValuePair<string, string> entry in discoveryDict)
+		{
+			if (entry.Value == "core.a")
+			{
+				elements.Add(button);
+			}
+		}
 		elements.Add(slider);
 		//Debug.Log("added interfaces [deb]");
 	}
@@ -63,6 +77,7 @@ public class CanvasBuilder : MonoBehaviour
 	}
 
 	//function that instantiates prefabs
+	//TODO: togliere elements e istanziare direttamente da discoveryDict
 	public void instantiateInterfaces()
 	{
 		Vector3 thisPosition = this.gameObject.transform.position;
