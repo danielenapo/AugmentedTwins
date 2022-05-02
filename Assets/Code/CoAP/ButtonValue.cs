@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonValue : MonoBehaviour
 {
 	private CoapProxy proxy;
+	private string uri;
 
 	void Start()
 	{
@@ -16,7 +17,11 @@ public class ButtonValue : MonoBehaviour
 
 	void TaskOnClick()
 	{
-		proxy.post("coffee");
+		proxy.post(uri);
 	}
 
+	public void setUri(string uri)
+	{
+		this.uri = uri;
+	}
 }

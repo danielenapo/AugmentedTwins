@@ -22,7 +22,6 @@ public class CanvasBuilder : MonoBehaviour
 	public string ip;
 
 
-
 	//CI STAREBBE FARE UN TEMPLATE/FACADE PATTERN
 	/*	void Awake()
 	{
@@ -58,13 +57,6 @@ public class CanvasBuilder : MonoBehaviour
 	public void addInterfaces()
 	{
 		discoveryDict = coapProxy.discover();
-		foreach (KeyValuePair<string, string> entry in discoveryDict)
-		{
-			if (entry.Value == "core.a")
-			{
-				elements.Add(button);
-			}
-		}
 		elements.Add(slider);
 		//Debug.Log("added interfaces [deb]");
 	}
@@ -73,7 +65,7 @@ public class CanvasBuilder : MonoBehaviour
 	public void setLabelText()
 	{
 		labelText.text = "Coffee Machine";
-		labelText.fontSize = 11;
+		//labelText.fontSize = 11;
 	}
 
 	//function that instantiates prefabs
@@ -85,11 +77,20 @@ public class CanvasBuilder : MonoBehaviour
 		//float offset = offsetSize;
 		foreach (GameObject element in elements)
 		{
-			GameObject newUIElement = Instantiate(element, thisPosition, this.gameObject.transform.rotation);
-			newUIElement.transform.localScale= new Vector3(0.5f,0.5f,1)/100;
-			newUIElement.transform.parent = this.gameObject.transform;
-			thisPosition.y -= offsetSize;
+			
+		}
 
+		foreach (KeyValuePair<string, string> entry in discoveryDict)
+		{
+			if (entry.Value == "core.a")
+			{
+				GameObject newButton = Instantiate(button, thisPosition, this.gameObject.transform.rotation);
+				newButton.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
+				newButton.transform.parent = this.gameObject.transform;
+				newButton.GetComponent<ButtonValue>().setUri(entry.Key.Substring(1));
+				Debug.Log("SUBSTRING RESULT --> from " + entry.Key + " to " + entry.Key.Substring(1));
+				thisPosition.y -= offsetSize;
+			}
 		}
 	}
 

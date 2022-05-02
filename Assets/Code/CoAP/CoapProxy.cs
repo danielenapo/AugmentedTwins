@@ -15,7 +15,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
     private string ip;
-    private GameObject monitor;
+    public GameObject monitor;
 
     public static AndroidJavaClass PluginClass
     {
@@ -31,7 +31,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
 
 	public void Start()
 	{
-		monitor = this.gameObject.transform.Find("Data").gameObject;
+		//monitor = this.gameObject.transform.Find("Data").gameObject;
     }
 
 	public string get(string resource)
@@ -52,6 +52,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
         string response = PluginClass.CallStatic<string>("discover", ip);
         Dictionary<string, string> resourcesDict = new Dictionary<string, string>();
         response = response.Substring(1, response.Length - 2);
+        response= String.Concat(response.Where(c => !Char.IsWhiteSpace(c)));
         resourcesDict = response.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                .Select(part => part.Split('='))
                .ToDictionary(split => split[0], split => split[1]);
