@@ -11,12 +11,11 @@ using UnityEngine.XR.ARFoundation;
 public class CanvasBuilder : MonoBehaviour
 {
 	private Dictionary<string, GameObject> interfaces = new Dictionary<string, GameObject>();
-	private ArrayList elements = new ArrayList();
 	private float sizeX;
 	private Dictionary<string, string> discoveryDict;
 	private CoapProxy coapProxy;
 	
-	public GameObject data, button, slider;
+	public GameObject button, slider, monitor;
 	public Text labelText;
 	public float offsetSize;
 	public string ip;
@@ -37,6 +36,7 @@ public class CanvasBuilder : MonoBehaviour
 	}
 	public void initialize(float sizeX) //testing
 	{ }*/
+
 	private void Awake()
 	{
 		coapProxy = this.gameObject.GetComponent<CoapProxy>();
@@ -52,34 +52,25 @@ public class CanvasBuilder : MonoBehaviour
 		instantiateInterfaces();
 		resize();
 	}
-	// function to retrieve interfaces associated to the image (available CoAP resources), and fills the interfaces list
-	// after doing a coap discovery, it associates to each actuator a button.
+	
+	/* 
+	 * function to retrieve interfaces associated to the image (available CoAP resources), 
+	 * and fills the interfaces list after doing a coap discovery, it associates to each actuator a button.
+	*/
 	public void addInterfaces()
 	{
 		discoveryDict = coapProxy.discover();
-		elements.Add(slider);
-		//Debug.Log("added interfaces [deb]");
 	}
 
-	//sets labelText valuem and changes font size according to the string length
 	public void setLabelText()
 	{
 		labelText.text = "Coffee Machine";
-		//labelText.fontSize = 11;
 	}
 
-	//function that instantiates prefabs
-	//TODO: togliere elements e istanziare direttamente da discoveryDict
 	public void instantiateInterfaces()
 	{
 		Vector3 thisPosition = this.gameObject.transform.position;
-		//thisPosition.y += offsetSize;
-		//float offset = offsetSize;
-		foreach (GameObject element in elements)
-		{
-			
-		}
-
+		monitor.GetComponent<CoAPClientTest>().initialize(coapProxy);
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
 			if (entry.Value == "core.a")
@@ -88,19 +79,18 @@ public class CanvasBuilder : MonoBehaviour
 				newButton.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 				newButton.transform.parent = this.gameObject.transform;
 				newButton.GetComponent<ButtonValue>().setUri(entry.Key.Substring(1));
-				Debug.Log("SUBSTRING RESULT --> from " + entry.Key + " to " + entry.Key.Substring(1));
 				thisPosition.y -= offsetSize;
 			}
+			monitor.GetComponent<CoAPClientTest>().setUri(entry.Key.Substring(1));
 		}
+		monitor.GetComponent<CoAPClientTest>().printData();
 	}
 
 	//rerizes canvas according to the image size
 	public void resize()
 	{
 		this.gameObject.transform.Rotate(90, 0, 0);
-		//Debug.Log("(DEB) width value: " + sizeX);
 		this.gameObject.transform.localScale=Vector3.Scale(this.gameObject.transform.localScale,new Vector3(sizeX, sizeX, sizeX));
-		//Debug.Log("(DEB) resized! -> scale: " + this.gameObject.transform.localScale);
 
 	}
 

@@ -44,7 +44,8 @@ public class CoapProxy : MonoBehaviour, CoapManager
 	{
         string status = PluginClass.CallStatic<string>("post", ip, resource);
         Debug.Log("[DEB] Status post request: " + status);
-        monitor.GetComponent<Text>().text = get(resource);
+        // monitor.GetComponent<Text>().text = get(resource); //after each post, a get is executed to show what changed
+        monitor.GetComponent<CoAPClientTest>().printData();//after each post, a get is executed to show what changed
     }
 
     public Dictionary<string, string> discover()

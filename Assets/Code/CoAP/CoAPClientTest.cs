@@ -7,23 +7,40 @@ using UnityEngine.UI;
 
 public class CoAPClientTest : MonoBehaviour
 {
-    Text textData;
+    private Text textData;
     private CoapProxy proxy;
+    private List<string> uris= new List<string>();
     
     
 
-    void Start()
+    public void initialize(CoapProxy proxy)
     {
-        textData = gameObject.GetComponent<Text>();
-        proxy = this.gameObject.transform.parent.GetComponent<CoapProxy>();
-        textData.text=coapGet();
-
+        textData = this.gameObject.GetComponent<Text>();
+        //proxy = this.gameObject.transform.parent.transform.parent.GetComponent<CoapProxy>();
+        this.proxy = proxy;
     }
-
-    public string coapGet()
+    /*
+     * makes a get for each resource that it's connected to, then prints all the results
+     */
+    public void printData()
 	{
-        return proxy.get("coffee");
+        string displayText = "";
+
+        foreach (string uri in uris)
+        {
+            displayText += uri.ToUpper()
+                + ": \n"
+                + proxy.get(uri)
+                + "\n";
+        }
+        textData.text = displayText;
+    }
+    public void setUri(string uri)
+	{
+        Debug.Log("added uri " + uri+ " to the monitor");
+        uris.Add(uri);
 	}
+
 
 
 
