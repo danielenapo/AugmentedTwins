@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0.65882355}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -644,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31100685140774307, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 86
+      value: 310
       objectReference: {fileID: 0}
     - target: {fileID: 31100685140774307, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_LocalScale.x
@@ -692,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31100685140774307, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28.4
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 31100685140774307, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -708,19 +708,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_Text
-      value: 'Waiting for response '
+      value: 'Waiting for response
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_FontData.m_BestFit
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 25
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 97511169195950779, guid: 565448998e6c7c24c8f7296d0631e06e, type: 3}
       propertyPath: m_FontData.m_HorizontalOverflow
