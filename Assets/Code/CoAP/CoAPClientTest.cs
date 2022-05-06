@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CoAPClientTest : MonoBehaviour
 {
-    private Text textData;
+    private TextMeshPro textData;
     private CoapProxy proxy;
     private List<string> uris= new List<string>();
     
@@ -15,7 +16,7 @@ public class CoAPClientTest : MonoBehaviour
 
     public void initialize(CoapProxy proxy)
     {
-        textData = this.gameObject.GetComponent<Text>();
+        textData = this.gameObject.GetComponent<TextMeshPro>();
         //proxy = this.gameObject.transform.parent.transform.parent.GetComponent<CoapProxy>();
         this.proxy = proxy;
     }
@@ -28,11 +29,12 @@ public class CoAPClientTest : MonoBehaviour
 
         foreach (string uri in uris)
         {
-            displayText += uri.ToUpper()
+            displayText += "<b>" + uri.ToUpper() + "</b>"
                 + ": \n"
                 + proxy.get(uri)
                 + "\n";
         }
+        Debug.Log("displaying text");
         textData.text = displayText;
     }
     public void setUri(string uri)

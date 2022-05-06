@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -16,7 +17,7 @@ public class CanvasBuilder : MonoBehaviour
 	private CoapProxy coapProxy;
 	
 	public GameObject button, slider, monitor;
-	public Text labelText;
+	public TextMeshPro labelText;
 	public float offsetSize;
 	public string ip;
 
