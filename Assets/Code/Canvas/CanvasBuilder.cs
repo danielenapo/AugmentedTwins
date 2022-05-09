@@ -15,11 +15,11 @@ public class CanvasBuilder : MonoBehaviour
 	private float sizeX;
 	private Dictionary<string, string> discoveryDict;
 	private CoapProxy coapProxy;
-	
+	private string ip;
+
 	public GameObject button, slider, monitor;
 	public TextMeshPro labelText;
 	public float offsetSize;
-	public string ip;
 
 
 	//CI STAREBBE FARE UN TEMPLATE/FACADE PATTERN
@@ -41,11 +41,13 @@ public class CanvasBuilder : MonoBehaviour
 	private void Awake()
 	{
 		coapProxy = this.gameObject.GetComponent<CoapProxy>();
-		coapProxy.setIp(ip);
+
 	}
 
-	public void initialize(float sizeX)
+	public void initialize(float sizeX, string ip)
 	{
+		this.ip = ip;
+		coapProxy.setIp(ip);
 		this.sizeX = sizeX;
 		offsetSize /= 5;
 		addInterfaces();
