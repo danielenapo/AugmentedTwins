@@ -7,6 +7,7 @@ public class ButtonValue : MonoBehaviour
 {
 	private CoapProxy proxy;
 	private string uri;
+	public Text labelText;
 
 	void Start()
 	{
@@ -23,5 +24,10 @@ public class ButtonValue : MonoBehaviour
 	public void setUri(string uri)
 	{
 		this.uri = uri;
+	}
+
+	public void setLabel(string label)
+	{
+		labelText.text = label;
 	}
 }

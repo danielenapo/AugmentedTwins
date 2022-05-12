@@ -10,7 +10,7 @@ public class CoAPClientTest : MonoBehaviour
 {
     private TextMeshPro textData;
     private CoapProxy proxy;
-    private List<string> uris= new List<string>();
+    private Dictionary<string,string> uris= new Dictionary<string, string>();
     
     
 
@@ -27,20 +27,19 @@ public class CoAPClientTest : MonoBehaviour
 	{
         string displayText = "";
 
-        foreach (string uri in uris)
+        foreach (KeyValuePair<string,string> resource in uris)
         {
-            displayText += "<b>" + uri.ToUpper() + "</b>"
+            displayText += "<b>" + resource.Value.ToUpper() + "</b>"
                 + ": \n"
-                + proxy.get(uri)
+                + proxy.get(resource.Key)
                 + "\n";
         }
         Debug.Log("displaying text");
         textData.text = displayText;
     }
-    public void setUri(string uri)
+    public void setUri(string uri,string label)
 	{
-        Debug.Log("added uri " + uri+ " to the monitor");
-        uris.Add(uri);
+        uris.Add(uri,label);
 	}
 
 

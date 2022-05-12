@@ -76,15 +76,20 @@ public class CanvasBuilder : MonoBehaviour
 		monitor.GetComponent<CoAPClientTest>().initialize(coapProxy);
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
-			if (entry.Value == "core.a")
+			string ifType, label;
+			label = entry.Value.Split(',')[0];
+			ifType = entry.Value.Split(',')[1];
+
+			if (ifType == "core.a")
 			{
 				GameObject newButton = Instantiate(button, thisPosition, this.gameObject.transform.rotation);
 				newButton.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 				newButton.transform.parent = this.gameObject.transform;
 				newButton.GetComponent<ButtonValue>().setUri(entry.Key.Substring(1));
+				newButton.GetComponent<ButtonValue>().setLabel(label);
 				thisPosition.y -= offsetSize;
 			}
-			monitor.GetComponent<CoAPClientTest>().setUri(entry.Key.Substring(1));
+			monitor.GetComponent<CoAPClientTest>().setUri(entry.Key.Substring(1),label);
 		}
 		monitor.GetComponent<CoAPClientTest>().printData();
 	}
