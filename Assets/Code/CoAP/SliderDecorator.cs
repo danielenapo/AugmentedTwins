@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonDecorator : MonoBehaviour
+public class SliderDecorator : MonoBehaviour, IPointerUpHandler
 {
+	public Text labelText;
+
 	private CoapProxy proxy;
 	private string uri;
-	public Text labelText;
+	private Slider slider;
 
 	public void initialize(CoapProxy proxy)
 	{
 		this.proxy = proxy;
-		Button button = this.gameObject.GetComponent<Button>();
-		button.onClick.AddListener(TaskOnClick);
+		slider = this.gameObject.GetComponent<Slider>();
 	}
 
-	void TaskOnClick()
+	
+
+	public void OnPointerUp(PointerEventData eventData)
 	{
-		proxy.post(uri, null);
+		proxy.post(uri, slider.value.ToString());
 	}
+
+
 
 	public void setUri(string uri)
 	{

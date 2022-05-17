@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
-/*
+/* CLASS DESCRIPTION:
  * fill the canvas with different types of interfaces (for example button, data, slider, ...)
  * depending on the values obtained by the CoAP discovery
  */
@@ -22,7 +22,7 @@ public class CanvasBuilder : MonoBehaviour
 	public float offsetSize;
 
 
-	//CI STAREBBE FARE UN TEMPLATE/FACADE PATTERN
+	//per la versione statica
 	/*	void Awake()
 	{
 		//sizeX = 0.142f;
@@ -72,6 +72,7 @@ public class CanvasBuilder : MonoBehaviour
 	public void instantiateInterfaces()
 	{
 		Vector3 thisPosition = this.gameObject.transform.position;
+		thisPosition.y += offsetSize;
 		monitor.GetComponent<MonitorDecorator>().initialize(coapProxy);
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
@@ -95,21 +96,23 @@ public class CanvasBuilder : MonoBehaviour
 				GameObject newSlider = Instantiate(slider, thisPosition, this.gameObject.transform.rotation);
 				newSlider.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 				newSlider.transform.parent = this.gameObject.transform;
-				//newSlider.GetComponent<ButtonDecorator>().setUri(uri);
-				//newSlider.GetComponent<ButtonDecorator>().setLabel(label);
+				newSlider.GetComponent<SliderDecorator>().initialize(coapProxy);
+				newSlider.GetComponent<SliderDecorator>().setUri(uri);
+				newSlider.GetComponent<SliderDecorator>().setLabel(label);
 				thisPosition.y -= offsetSize;
 			}
 
 			if (ifType == "core.s.temp")
 			{
 				GameObject newThermometer = Instantiate(thermometer, thisPosition, this.gameObject.transform.rotation);
+
 				newThermometer.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 				newThermometer.transform.parent = this.gameObject.transform;
 				newThermometer.GetComponent<ThermometerDecorator>().setUri(uri);
 				newThermometer.GetComponent<ThermometerDecorator>().setLabel(label);
 				newThermometer.GetComponent<ThermometerDecorator>().initialize(coapProxy);
 				newThermometer.GetComponent<ThermometerDecorator>().printData();
-
+				thisPosition.y -= offsetSize;
 			}
 			else { 
 				monitor.GetComponent<MonitorDecorator>().setUri(uri);
