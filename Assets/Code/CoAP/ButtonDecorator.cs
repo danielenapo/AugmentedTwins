@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonValue : MonoBehaviour
+public class ButtonDecorator : MonoBehaviour
 {
 	private CoapProxy proxy;
 	private string uri;
 	public Text labelText;
 
-	void Start()
+	public void initialize(CoapProxy proxy)
 	{
-		proxy = this.gameObject.transform.parent.GetComponent<CoapProxy>();
+		this.proxy = proxy;
 		Button button = this.gameObject.GetComponent<Button>();
 		button.onClick.AddListener(TaskOnClick);
 	}
@@ -30,4 +30,5 @@ public class ButtonValue : MonoBehaviour
 	{
 		labelText.text = label;
 	}
+
 }
