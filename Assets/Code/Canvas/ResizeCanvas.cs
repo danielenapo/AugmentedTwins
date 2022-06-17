@@ -8,6 +8,7 @@ public class ResizeCanvas : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject ipInputText;
+    public Text deviceName;
 
     [SerializeField]
     ARTrackedImageManager m_TrackedImageManager;
@@ -23,7 +24,7 @@ public class ResizeCanvas : MonoBehaviour
             string ip = ipInputText.GetComponent<Text>().text;
             var sizeX =newImage.referenceImage.width;
             Debug.Log("(DEB) Image found: " + newImage.referenceImage.name + " size " + newImage.referenceImage.width);
-            newImage.GetComponentInChildren<CanvasBuilder>().initialize(sizeX, ip);
+            newImage.GetComponentInChildren<CanvasBuilder>().initialize(sizeX, ip, deviceName.text);
         }
 
         foreach (var updatedImage in eventArgs.updated)

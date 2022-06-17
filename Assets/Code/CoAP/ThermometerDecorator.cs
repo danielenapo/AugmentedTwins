@@ -19,8 +19,10 @@ public class ThermometerDecorator : MonoBehaviour, SensorInterface
 
     public void printData()
 	{
-        string tempValue=proxy.get(uri);
-        dataText.text = tempValue;
+        string response=proxy.get(uri);
+        Dictionary<string,string> dict=JsonParser.parse(response)[0];
+        response = dict["v"] + " " + dict["u"];
+        dataText.text = response;
 	}
 
     public void setUri(string uri)

@@ -24,7 +24,16 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
     }
 
     /*
-     * makes a get for each resource that it's connected to, then prints all the results
+     * makes a get for each resource that it's connected to,
+     * then parses the json SenML response and iterates through each record
+     * and for each record it displays its data (based on the key, it will only 
+     * display name, value and unit, because some values are not useful to the user)
+     * SenML KEYS:
+     * - n = name
+     * - v = value (generic)
+     * - vb = boolean value
+     * - vs = string value
+     * - u = unit
      */
     public void printData()
 	{
@@ -32,10 +41,28 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
 
         for(int i=0; i< uris.Count; i++ )
         {
-            displayText += "<b>" + labels[i].ToUpper() + "</b>"
-                + ": \n"
-                + proxy.get(uris[i])
-                + "\n";
+            List<Dictionary<string, string>> records;
+            records= JsonParser.parse(proxy.get(uris[i]));
+            displayText += "<b>" + labels[i].ToUpper() + "</b>: \n";
+            foreach(Dictionary<string,string> record in records)
+			{
+                foreach(KeyValuePair<string, string> entry in record)
+				{
+					switch (entry.Key)
+					{
+                        case "n":
+                            displayText += entry.Value + ": ";
+                            break;
+                        case "v":
+                        case "vb":
+                        case "vs":
+                        case "u":
+                            displayText += entry.Value+" ";
+                            break;
+                    }
+                }
+                displayText += "\n";
+			}
         }
         Debug.Log("displaying text");
         textData.text = displayText;
@@ -49,9 +76,6 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
 	{
         this.labels.Add(label);
 	}
-
-
-
 
 
 }
