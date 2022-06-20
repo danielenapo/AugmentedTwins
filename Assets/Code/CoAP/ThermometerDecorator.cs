@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ThermometerDecorator : MonoBehaviour, SensorInterface
 {
     public Text dataText;
-    public TextMeshPro labelText;
+    public TextMeshProUGUI labelText;
     private string uri, label;
     private CoapProxy proxy;
 
