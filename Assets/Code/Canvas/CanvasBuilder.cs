@@ -15,7 +15,7 @@ public class CanvasBuilder : MonoBehaviour
 	private float sizeX;
 	private Dictionary<string, string> discoveryDict;
 	private CoapProxy coapProxy;
-	private string ip;
+	private string label;
 
 	public GameObject button, slider, monitor, thermometer;
 	public TextMeshPro labelText;
@@ -43,14 +43,14 @@ public class CanvasBuilder : MonoBehaviour
 		coapProxy = this.gameObject.GetComponent<CoapProxy>();
 	}
 
-	public void initialize(float sizeX, string ip, string deviceName)
+	public void initialize(float sizeX, string ip, string label)
 	{
-		this.ip = ip;
+		this.label = label;
 		coapProxy.setIp(ip);
 		this.sizeX = sizeX;
 		offsetSize /= 5;
 		addInterfaces();
-		setLabelText(deviceName);
+		setLabelText();
 		instantiateInterfaces();
 		resize();
 	}
@@ -64,7 +64,7 @@ public class CanvasBuilder : MonoBehaviour
 		discoveryDict = coapProxy.discover();
 	}
 
-	public void setLabelText(string label)
+	public void setLabelText()
 	{
 		labelText.text = label;
 	}

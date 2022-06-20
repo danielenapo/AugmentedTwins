@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 /*
  * Si occupa di inoltrare le richieste al server CoAP al plugin Android nativo
@@ -72,6 +73,13 @@ public class CoapProxy : MonoBehaviour, CoapManager
 	{
         this.ip = ip;
 	}
+
+    public static List<Dictionary<string, string>> parse(string response)
+    {
+        List<Dictionary<string, string>> parsedResponse;
+        parsedResponse = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(response);
+        return parsedResponse;
+    }
 }
 
 /*
