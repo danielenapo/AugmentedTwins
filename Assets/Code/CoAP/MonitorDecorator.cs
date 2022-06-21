@@ -8,7 +8,7 @@ using TMPro;
 
 public class MonitorDecorator : MonoBehaviour, SensorInterface
 {
-    private TextMeshPro textData;
+    private TextMeshProUGUI textData;
     private CoapProxy proxy;
     //private Dictionary<string,string> uris= new Dictionary<string, string>();
     private List<string> uris = new List<string>();
@@ -18,7 +18,7 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
 
     public void initialize(CoapProxy proxy)
     {
-        textData = this.gameObject.GetComponent<TextMeshPro>();
+        textData = this.gameObject.GetComponent<TextMeshProUGUI>();
         //proxy = this.gameObject.transform.parent.transform.parent.GetComponent<CoapProxy>();
         this.proxy = proxy;
     }
@@ -44,6 +44,7 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
             List<Dictionary<string, string>> records;
             records= JsonParser.parse(proxy.get(uris[i]));
             displayText += "<b>" + labels[i].ToUpper() + "</b>: \n";
+            bool isPrint = false; //per non stampare linee vuote
             foreach(Dictionary<string,string> record in records)
 			{
                 foreach(KeyValuePair<string, string> entry in record)
@@ -52,16 +53,20 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
 					{
                         case "n":
                             displayText += entry.Value + ": ";
+                            isPrint = true;
                             break;
                         case "v":
                         case "vb":
                         case "vs":
                         case "u":
                             displayText += entry.Value+" ";
+                            isPrint = true;
                             break;
                     }
                 }
-                displayText += "\n";
+                if(isPrint)
+                    displayText += "\n";
+                isPrint = false;
 			}
         }
         Debug.Log("displaying text");

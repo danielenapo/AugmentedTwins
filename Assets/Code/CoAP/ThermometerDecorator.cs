@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ThermometerDecorator : MonoBehaviour, SensorInterface
 {
-    public Text dataText;
+    public Text dataText, unitText;
     public TextMeshProUGUI labelText;
     private string uri, label;
     private CoapProxy proxy;
@@ -21,9 +21,11 @@ public class ThermometerDecorator : MonoBehaviour, SensorInterface
 	{
         string response=proxy.get(uri);
         Dictionary<string,string> dict=JsonParser.parse(response)[0];
-        response = dict["v"] + " " + dict["u"];
+        response = dict["v"];
         dataText.text = response;
-	}
+        unitText.text = dict["u"];
+
+    }
 
     public void setUri(string uri)
 	{

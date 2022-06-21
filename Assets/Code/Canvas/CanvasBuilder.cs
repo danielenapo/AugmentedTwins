@@ -22,22 +22,6 @@ public class CanvasBuilder : MonoBehaviour
 	public float offsetSize;
 
 
-	//per la versione statica
-	/*	void Awake()
-	{
-		//sizeX = 0.142f;
-		offsetSize /= 5;
-		getInterfaces();
-		setLabelText();
-		instantiateInterfaces();
-		this.gameObject.transform.Rotate(88, 0, 0);
-		//imageManager=Camera.main.GetComponent<ARTrackedImageManager>();
-		//resize();
-
-	}
-	public void initialize(float sizeX) //testing
-	{ }*/
-
 	private void Awake()
 	{
 		coapProxy = this.gameObject.GetComponent<CoapProxy>();
@@ -104,15 +88,14 @@ public class CanvasBuilder : MonoBehaviour
 
 			if (ifType == "core.s.temp")
 			{
-				GameObject newThermometer = Instantiate(thermometer, new Vector3(-2*offsetSize, 0,0), this.gameObject.transform.rotation);
+				GameObject newThermometer = Instantiate(thermometer, new Vector3(-(2.5f)*offsetSize, 0,0), this.gameObject.transform.rotation);
 
-				newThermometer.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 70;
+				newThermometer.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;
 				newThermometer.transform.parent = this.gameObject.transform;
 				newThermometer.GetComponent<ThermometerDecorator>().setUri(uri);
 				newThermometer.GetComponent<ThermometerDecorator>().setLabel(label);
 				newThermometer.GetComponent<ThermometerDecorator>().initialize(coapProxy);
 				newThermometer.GetComponent<ThermometerDecorator>().printData();
-				//thisPosition.y -= offsetSize;
 			}
 			else { 
 				monitor.GetComponent<MonitorDecorator>().setUri(uri);
