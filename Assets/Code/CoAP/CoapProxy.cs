@@ -43,9 +43,10 @@ public class CoapProxy : MonoBehaviour, CoapManager
 
     public void post(string resource, string payload)
 	{
+        
         string status = PluginClass.CallStatic<string>("post", ip, resource, payload);
         Debug.Log("[DEB] Status post request: " + status);
-        // monitor.GetComponent<Text>().text = get(resource); //after each post, a get is executed to show what changed
+
         monitor.GetComponent<MonitorDecorator>().printData();//after each post, a get is executed to show what changed
     }
 
@@ -80,6 +81,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
         parsedResponse = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(response);
         return parsedResponse;
     }
+
 }
 
 /*

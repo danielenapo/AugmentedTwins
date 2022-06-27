@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonDecorator : MonoBehaviour
+public class ButtonDecorator : MonoBehaviour, Actuator
 {
 	private CoapProxy proxy;
 	private string uri;
@@ -19,6 +20,7 @@ public class ButtonDecorator : MonoBehaviour
 	void TaskOnClick()
 	{
 		proxy.post(uri, null);
+
 	}
 
 	public void setUri(string uri)
@@ -32,3 +34,4 @@ public class ButtonDecorator : MonoBehaviour
 	}
 
 }
+
