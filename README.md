@@ -1,5 +1,5 @@
 # tesi (work in progress)
-### Augmented Reality Android app that can interact with IoT objects through an AR interface, made using Unity ARFoundation and Android ARCore.
+### Augmented Reality Android app that can interact with IoT objects through an AR interface, made using Unity ARFoundation and CoAP (Constrained Application Protocol).
 This project was made for my Bachelor degree thesis, named "Digital Twins and Augmented Reality for Constrained IoT devices".
 
 ## How it works
