@@ -406,7 +406,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 192.168.0.225
+  m_Text: 192.168.1.11
 --- !u!222 &165585586
 CanvasRenderer:
   m_ObjectHideFlags: 0

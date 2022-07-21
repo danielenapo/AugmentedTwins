@@ -42,13 +42,26 @@ public class CanvasBuilder : MonoBehaviour
 
 	}
 
-
+	/*
+	 * Il proxy ritorna un dictionary di tipo:
+	 * key-> nome risorsa (es "/temperature")
+	 * value -> elenco attributi separati da "," (es "temp,internal temp,core.a,")
+	 *											 (		RT,	    TITLE,		 IF)
+	 */
 	public void discovery()
 	{
 
 		discoveryDict = coapProxy.discover();
 	}
 
+	/*
+	 * Istanzia le interfacce ispezionando il risultato della discovery, chiamando le classi Factory
+	 * in ordine gli attributi nel campo value di discoveryDict da controllare sono:
+	 * - RT: per distinguere il tipo di prefab da istanziare (es. temp per il termometro, btn bottoni, slider, ...)
+	 * - TITLE: lo uso come label dell'interfaccia
+	 * - IF: per distinguere tra sensore (core.a) e attuatore (core.s)
+	 * NOTA: per i sensori, se non si conosce il valore dentro RT, lo aggiungo nel monitor
+	*/
 	public void instantiateInterfaces()
 	{
 		factory.initialize(discoveryDict, coapProxy);
@@ -56,21 +69,23 @@ public class CanvasBuilder : MonoBehaviour
 		Vector3 thisPosition = this.gameObject.transform.position;
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
-			string ifType, label, uri;
-			label = entry.Value.Split(',')[0];
-			ifType = entry.Value.Split(',')[1];
-			uri = entry.Key.Substring(1);
+			string ifType, label, rt, uri;
+			
+			rt= entry.Value.Split(',')[0];
+			label = entry.Value.Split(',')[1];
+			ifType = entry.Value.Split(',')[2];
+			uri = entry.Key.Substring(1);	//tolgo la "/" all'inizio del nome della risorsa
 
-			if (ifType == "core.a.btn")
+			if (rt == "btn")
 			{
 				factory.instantiateActuator("button", uri, label);
 			}
-			if (ifType == "core.a.slider")
+			if (rt == "slider")
 			{
 				factory.instantiateActuator("slider", uri, label);
 			}
 
-			if (ifType == "core.s.temp")
+			if (rt == "temp")
 			{
 				factory.instantiateSensor("thermometer", uri, label);
 			}

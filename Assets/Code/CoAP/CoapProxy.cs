@@ -50,9 +50,15 @@ public class CoapProxy : MonoBehaviour, CoapManager
         monitor.GetComponent<MonitorDecorator>().printData();//after each post, a get is executed to show what changed
     }
 
+    /*
+     * chiama il server per effettuare la discovery
+     * gli ritorna una stringa di questo tipo:
+     * ogni risorsa è separata da ";" ed è scritta così: /nomeRisorsa=rt,title,if
+    */
     public Dictionary<string, string> discover()
     {
         string response = PluginClass.CallStatic<string>("discover", ip);
+        Debug.Log("[DEB] discovery response from plugin -> " + response);
         Dictionary<string, string> resourcesDict = new Dictionary<string, string>();
         //response = response.Substring(1, response.Length - 2);
         //response= String.Concat(response.Where(c => !Char.IsWhiteSpace(c)));
