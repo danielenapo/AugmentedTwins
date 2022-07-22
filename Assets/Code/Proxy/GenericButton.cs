@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonDecorator : MonoBehaviour, Actuator
+public class GenericButton : MonoBehaviour, Actuator
 {
 	private CoapProxy proxy;
 	private string uri;

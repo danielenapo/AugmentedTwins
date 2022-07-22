@@ -971,9 +971,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1264702596561032583}
     m_Modifications:
+    - target: {fileID: 787015953768836444, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
+      propertyPath: m_Text
+      value: 255
+      objectReference: {fileID: 0}
+    - target: {fileID: 808379698808247488, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 808379698808247488, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3018115565561181180, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3178245313454222113, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 3399066335057778983, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
       propertyPath: m_Name
