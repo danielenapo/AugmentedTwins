@@ -10,8 +10,10 @@ public class GenericButton : MonoBehaviour, Actuator
 	private string uri;
 	public Text labelText;
 
-	public void initialize(CoapProxy proxy)
+	public void initialize(CoapProxy proxy, string uri, string label)
 	{
+		this.uri = uri;
+		labelText.text = label;
 		this.proxy = proxy;
 		Button button = this.gameObject.GetComponent<Button>();
 		button.onClick.AddListener(TaskOnClick);
@@ -23,14 +25,9 @@ public class GenericButton : MonoBehaviour, Actuator
 
 	}
 
-	public void setUri(string uri)
+	public void setValue() //non implementata per il bottone (viene visualizzato sul monitor)
 	{
-		this.uri = uri;
-	}
-
-	public void setLabel(string label)
-	{
-		labelText.text = label;
+		return;
 	}
 
 }

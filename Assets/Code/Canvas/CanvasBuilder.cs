@@ -74,20 +74,13 @@ public class CanvasBuilder : MonoBehaviour
 			rt= entry.Value.Split(',')[0];
 			label = entry.Value.Split(',')[1];
 			ifType = entry.Value.Split(',')[2];
-			uri = entry.Key.Substring(1);	//tolgo la "/" all'inizio del nome della risorsa
+			uri = entry.Key.Substring(1);   //tolgo la "/" all'inizio del nome della risorsa
+			if (ifType == "core.a")
+				factory.instantiateActuator(rt, uri, label);
 
-			if (rt == "btn")
+			if (rt.Contains("3d"))
 			{
-				factory.instantiateActuator("button", uri, label);
-			}
-			if (rt == "slider")
-			{
-				factory.instantiateActuator("slider", uri, label);
-			}
-
-			if (rt == "temp")
-			{
-				factory.instantiateSensor("thermometer", uri, label);
+				factory.instantiateSensor(rt, uri, label);
 			}
 			else
 			{

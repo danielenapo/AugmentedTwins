@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
-    public GameObject button, slider, monitor, thermometer;
+    public GameObject button, slider, monitor, thermometer, switchButton;
 	public GameObject actuatorBackground, sensorBackground;
 	public float offsetSize = 1.5f;
 
@@ -20,29 +20,27 @@ public class Factory : MonoBehaviour
 		//thisPosition.y += offsetSize;
 	}
 
-	public void instantiateActuator(string type, string uri, string label)
+	public void instantiateActuator(string rt, string uri, string label)
 	{
 		GameObject newActuator;
 
-		if (type == "button")
+		if (rt == "btn")
 			newActuator = Instantiate(button, thisPosition, this.gameObject.transform.rotation);
-		else
+		else if (rt == "slider")
 			newActuator = Instantiate(slider, thisPosition, this.gameObject.transform.rotation);
-		Debug.Log("instantiated "+type+"!");
+		else if (rt=="switch")
+			newActuator = Instantiate(switchButton, thisPosition, this.gameObject.transform.rotation);
+		else
+			return;
+		Debug.Log("instantiated "+rt);
 		newActuator.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
-		Debug.Log("scaled!");
 		newActuator.transform.parent = actuatorBackground.gameObject.transform;
-		Debug.Log("parented!");
-		newActuator.GetComponent<Actuator>().setUri(uri);
-		newActuator.GetComponent<Actuator>().setLabel(label);
-		newActuator.GetComponent<Actuator>().initialize(coapProxy);
-		Debug.Log("setters!");
-		//thisPosition.y -= offsetSize;
-		Debug.Log("position updated!");
+		newActuator.GetComponent<Actuator>().initialize(coapProxy, uri, label);
+
 	}
 
-	public void instantiateSensor(string type, string uri, string label) { 
-		if (type=="thermometer")
+	public void instantiateSensor(string rt, string uri, string label) { 
+		if (rt=="temp3d")
 		{
 			GameObject newThermometer = Instantiate(thermometer, new Vector3(-(2.5f) * offsetSize, 0, 0), this.gameObject.transform.rotation);
 			newThermometer.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;

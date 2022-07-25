@@ -10,16 +10,19 @@ using TMPro;
 public class SliderDecorator : MonoBehaviour, IPointerUpHandler, Actuator
 {
 	public Text labelText;
-	public TextMeshProUGUI textValue;
+	public Text textValue;
 
 	private CoapProxy proxy;
 	private string uri;
 	private Slider slider;
 
-	public void initialize(CoapProxy proxy)
+	public void initialize(CoapProxy proxy, string uri, string label)
 	{
+		this.uri = uri;
+		labelText.text = label;
 		this.proxy = proxy;
 		slider = this.gameObject.GetComponent<Slider>();
+		slider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
 		setValue(); //inizialmente imposta il valore prendendolo dal server
 	}
 
@@ -38,11 +41,11 @@ public class SliderDecorator : MonoBehaviour, IPointerUpHandler, Actuator
 	public void setValue()
 	{
 		Dictionary<string, string> records = JsonParser.parse(proxy.get(uri))[0];
-		Debug.Log("SLIDER GET -> " + records.ToString());
 		try
 		{
 			if (records.ContainsKey("v"))
 			{
+				Debug.Log("SLIDER GET -> " + records["v"]);
 				this.slider.value = float.Parse(records["v"]);
 				textValue.text = records["v"];
 			}
@@ -53,15 +56,4 @@ public class SliderDecorator : MonoBehaviour, IPointerUpHandler, Actuator
 			textValue.text = "0";
 		}
 	}
-
-	public void setUri(string uri)
-	{
-		this.uri = uri;
-	}
-
-	public void setLabel(string label)
-	{
-		labelText.text = label;
-	}
-
 }
