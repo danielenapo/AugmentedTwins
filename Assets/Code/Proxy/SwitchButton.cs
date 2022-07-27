@@ -40,7 +40,7 @@ public class SwitchButton : MonoBehaviour, Actuator
 	void setColor()
 	{
 		if (value == true)
-			buttonImage.color = new Color(5, 105, 32, 255);
+			buttonImage.color = Color.green;
 		else
 			buttonImage.color = Color.red;
 	}

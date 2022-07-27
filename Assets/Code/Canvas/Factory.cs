@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
-    public GameObject button, slider, monitor, thermometer, switchButton;
+    public GameObject button, slider, monitor, thermometer, switchButton, capsules;
 	public GameObject actuatorBackground, sensorBackground;
-	public float offsetSize = 1.5f;
+	public float offsetSize = 70f; //layout grid only works for UI elements, so offset is required for 3d objects
+
 
 	private Dictionary<string, string> discoveryDict;
 	private CoapProxy coapProxy;
 	private Vector3 thisPosition;
+	private float offset = 0;
 	public void initialize(Dictionary<string, string> discoveryDict, CoapProxy coapProxy)
 	{
 		this.discoveryDict = discoveryDict;
 		this.coapProxy = coapProxy;
 		thisPosition = this.gameObject.transform.position;
-		offsetSize /= 5;
+		//offsetSize /= 5; 
 		//thisPosition.y += offsetSize;
 	}
 
@@ -24,11 +26,11 @@ public class Factory : MonoBehaviour
 	{
 		GameObject newActuator;
 
-		if (rt == "btn")
+		if (rt.Contains("btn"))
 			newActuator = Instantiate(button, thisPosition, this.gameObject.transform.rotation);
-		else if (rt == "slider")
+		else if (rt.Contains("slider"))
 			newActuator = Instantiate(slider, thisPosition, this.gameObject.transform.rotation);
-		else if (rt=="switch")
+		else if (rt.Contains("switch"))
 			newActuator = Instantiate(switchButton, thisPosition, this.gameObject.transform.rotation);
 		else
 			return;
@@ -39,17 +41,20 @@ public class Factory : MonoBehaviour
 
 	}
 
-	public void instantiateSensor(string rt, string uri, string label) { 
-		if (rt=="temp3d")
-		{
-			GameObject newThermometer = Instantiate(thermometer, new Vector3(-(2.5f) * offsetSize, 0, 0), this.gameObject.transform.rotation);
-			newThermometer.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;
-			newThermometer.transform.parent = sensorBackground.gameObject.transform;
-			newThermometer.GetComponent<ThermometerDecorator>().setUri(uri);
-			newThermometer.GetComponent<ThermometerDecorator>().setLabel(label);
-			newThermometer.GetComponent<ThermometerDecorator>().initialize(coapProxy);
-			newThermometer.GetComponent<ThermometerDecorator>().printData();
-		}
+
+	public void instantiateSensor(string rt, string uri, string label) {
+		GameObject newSensor;
+		if (rt == "temp3d")
+			newSensor = Instantiate(thermometer, new Vector3(0, offset, 0), this.gameObject.transform.rotation);
+		else if (rt.Contains("capsules"))
+			newSensor = Instantiate(capsules, new Vector3(-65, offset, 0), this.gameObject.transform.rotation);
+		else return;
+		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;
+		newSensor.transform.parent = sensorBackground.gameObject.transform;
+		newSensor.GetComponent<Sensor>().initialize(coapProxy, uri, label);
+		newSensor.GetComponent<Sensor>().printData();
+		offset -= offsetSize;
+
 	}
 
 }

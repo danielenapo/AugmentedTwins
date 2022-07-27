@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   labelText: {fileID: 3087126482625145666}
-  textValue: {fileID: 0}
+  textValue: {fileID: 787015953768836444}
 --- !u!1 &5269173619047761641
 GameObject:
   m_ObjectHideFlags: 0

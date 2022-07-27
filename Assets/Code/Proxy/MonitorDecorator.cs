@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MonitorDecorator : MonoBehaviour, SensorInterface
-{
+public class MonitorDecorator : MonoBehaviour, Sensor
+{ 
     private TextMeshProUGUI textData;
     private CoapProxy proxy;
     //private Dictionary<string,string> uris= new Dictionary<string, string>();
@@ -16,7 +16,7 @@ public class MonitorDecorator : MonoBehaviour, SensorInterface
     
     
 
-    public void initialize(CoapProxy proxy)
+    public void initialize(CoapProxy proxy, string uri, string label)
     {
         textData = this.gameObject.GetComponent<TextMeshProUGUI>();
         //proxy = this.gameObject.transform.parent.transform.parent.GetComponent<CoapProxy>();

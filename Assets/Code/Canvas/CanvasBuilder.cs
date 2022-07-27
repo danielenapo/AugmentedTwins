@@ -65,7 +65,7 @@ public class CanvasBuilder : MonoBehaviour
 	public void instantiateInterfaces()
 	{
 		factory.initialize(discoveryDict, coapProxy);
-		monitor.GetComponent<MonitorDecorator>().initialize(coapProxy);
+		monitor.GetComponent<MonitorDecorator>().initialize(coapProxy, null, null);
 		Vector3 thisPosition = this.gameObject.transform.position;
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
@@ -79,6 +79,10 @@ public class CanvasBuilder : MonoBehaviour
 				factory.instantiateActuator(rt, uri, label);
 
 			if (rt.Contains("3d"))
+			{
+				factory.instantiateSensor(rt, uri, label);
+			}
+			else if (rt.Contains("capsules"))
 			{
 				factory.instantiateSensor(rt, uri, label);
 			}
