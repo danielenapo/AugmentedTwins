@@ -8,7 +8,7 @@ The app recognises images in the real world, wich are associated to the ip of a 
 
 ## Lines of code
 I'm using the LOC metric to approximately track the size of the project.<br> 
-<b>LOC=900</b>
+<b>LOC=950</b>
 <br>
 cmd command :  
 `dir -Recurse *.cs | Get-Content | Measure-Object -Line` 
