@@ -6,7 +6,7 @@ public class Factory : MonoBehaviour
 {
     public GameObject button, slider, monitor, thermometer, switchButton, capsules;
 	public GameObject actuatorBackground, sensorBackground;
-	public float offsetSize = 70f; //layout grid only works for UI elements, so offset is required for 3d objects
+	public float offsetSize = 100f; //layout grid only works for UI elements, so offset is required for 3d objects
 
 
 	private Dictionary<string, string> discoveryDict;
@@ -44,10 +44,11 @@ public class Factory : MonoBehaviour
 
 	public void instantiateSensor(string rt, string uri, string label) {
 		GameObject newSensor;
+		Vector3 position = sensorBackground.gameObject.transform.position;
 		if (rt == "temp3d")
-			newSensor = Instantiate(thermometer, new Vector3(0, offset, 0), this.gameObject.transform.rotation);
+			newSensor = Instantiate(thermometer, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
 		else if (rt.Contains("capsules"))
-			newSensor = Instantiate(capsules, new Vector3(-65, offset, 0), this.gameObject.transform.rotation);
+			newSensor = Instantiate(capsules, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
 		else return;
 		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;
 		newSensor.transform.parent = sensorBackground.gameObject.transform;
