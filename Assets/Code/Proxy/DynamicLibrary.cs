@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using Unity.Jobs;
@@ -177,9 +178,52 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
 
         }
+
+        public void pickImage(List<Dictionary<string, string>> imagesResp)//from HTTP response
+		{
+            Texture2D texture=new Texture2D(1, 1);
+            foreach (Dictionary<string, string> image in imagesResp)
+            {
+                if (image["image"] != null)
+				{
+                    try
+                    {
+                        byte[] b64_bytes = System.Convert.FromBase64String(image["image"]);
+                        texture = new Texture2D(1, 1);
+                        texture.LoadImage(b64_bytes);
+                    }
+                    catch
+                    {
+                        Debug.Log("Could not convert base64 image to string from " + image["displayName"]);
+                    }
+                    finally
+                    {
+                        if (texture != null)
+                        {
+                            texture = AdaptTexture(texture);
+                            m_Images[0].texture = texture;
+                            m_Images[0].name = image["displayName"];
+
+
+                            imagesCounter++;
+                            addImagesRequested();
+                        }
+                        else
+                        {
+                            Debug.Log("Couldn't load texture from " + image["displayName"]);
+                        }
+                    }
+                }
+				else {
+                    Debug.Log("No image provided");
+                        return;
+                }
+            }
+           
+        }
             
         
-        private void PickImage()
+        private void PickImage()//from gallery
         {
             NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
             {

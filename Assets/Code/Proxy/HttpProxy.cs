@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation.Samples;
 
 public class HttpProxy : MonoBehaviour
 {
     public Text ip;
+    public DynamicLibrary imgLibrary;
+    public Button button;
+    
     void Start()
     {
+        button.onClick.AddListener(TaskOnClick);
+        
+    }
+
+    public void TaskOnClick()
+	{
         string uri = "http://" + ip.text + ":7070/api/iot/inventory/device";
         StartCoroutine(getRequest(uri));
     }
 
     /*ESEMPIO DI RISPOSTA DELL'API:
-    * [{"uuid":"device00001","protocol":"coap","ip":"localhost","port":7252,"image":"lol","displayName":"Coffee machine"}]
+    * [{"uuid":"device00001","protocol":"coap","ip":"localhost","port":7252,"image":"base64/...","displayName":"Coffee machine"}]
     */
     IEnumerator getRequest(string uri)
     {
@@ -29,10 +39,12 @@ public class HttpProxy : MonoBehaviour
         else
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
-            Dictionary<string,string> dictResp= CoapProxy.parse(uwr.downloadHandler.text)[0];
-            Debug.Log("Name: " + dictResp["displayName"]);
+            List<Dictionary<string,string>> dictResp= CoapProxy.parse(uwr.downloadHandler.text);
+            imgLibrary.pickImage(dictResp);
         }
     }
+
+
 
 
 }
