@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
+using static DynamicLibrary;
 
 public class ResizeCanvas : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject ipInputText;
     public Text deviceName;
+    private ImageData[] images;
 
     [SerializeField]
     ARTrackedImageManager m_TrackedImageManager;
-    
-    void OnEnable() => m_TrackedImageManager.trackedImagesChanged += OnChanged;
+
+	public void initialize(ImageData[] images)
+	{
+        this.images = images;
+	}
+
+	void OnEnable() => m_TrackedImageManager.trackedImagesChanged += OnChanged;
 
     void OnDisable() => m_TrackedImageManager.trackedImagesChanged -= OnChanged;
 
@@ -24,7 +31,14 @@ public class ResizeCanvas : MonoBehaviour
             string ip = ipInputText.GetComponent<Text>().text;
             var sizeX =newImage.referenceImage.width;
             Debug.Log("(DEB) Image found: " + newImage.referenceImage.name + " size " + newImage.referenceImage.width);
-            newImage.GetComponentInChildren<CanvasBuilder>().initialize(sizeX, ip, deviceName.text);
+            foreach(ImageData image in images)
+			{
+                if(image.name== newImage.referenceImage.name)
+				{
+                    newImage.GetComponentInChildren<CanvasBuilder>().initialize(sizeX, image.ip, image.port, image.protocol, image.name);
+                }
+			}
+           
         }
 
         foreach (var updatedImage in eventArgs.updated)

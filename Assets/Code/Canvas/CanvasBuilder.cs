@@ -17,7 +17,8 @@ public class CanvasBuilder : MonoBehaviour
 	private float sizeX;
 	private Dictionary<string, string> discoveryDict;
 	private CoapProxy coapProxy;
-	private string label;
+	private string label, protocol;
+	private int port;
 	private Factory factory;
 
 	public GameObject monitor;
@@ -30,8 +31,10 @@ public class CanvasBuilder : MonoBehaviour
 		factory= this.gameObject.GetComponent<Factory>();
 	}
 
-	public void initialize(float sizeX, string ip, string label)
+	public void initialize(float sizeX, string ip, int port, string protocol,  string label)
 	{
+		this.port = port;
+		this.protocol = protocol;
 		this.label = label;
 		coapProxy.setIp(ip);
 		this.sizeX = sizeX;

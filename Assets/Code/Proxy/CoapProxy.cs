@@ -16,6 +16,7 @@ public class CoapProxy : MonoBehaviour, CoapManager
     static AndroidJavaClass _pluginClass;
     static AndroidJavaObject _pluginInstance;
     private string ip;
+    private int port;
     public GameObject monitor;
 
     public static AndroidJavaClass PluginClass
