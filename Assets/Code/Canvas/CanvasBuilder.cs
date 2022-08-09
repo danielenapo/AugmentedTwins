@@ -80,12 +80,7 @@ public class CanvasBuilder : MonoBehaviour
 			uri = entry.Key.Substring(1);   //tolgo la "/" all'inizio del nome della risorsa
 			if (ifType == "core.a")
 				factory.instantiateActuator(rt, uri, label);
-
-			if (rt.Contains("3d"))
-			{
-				factory.instantiateSensor(rt, uri, label);
-			}
-			else if (rt.Contains("capsules"))
+			else if (ifType=="core.s")
 			{
 				factory.instantiateSensor(rt, uri, label);
 			}

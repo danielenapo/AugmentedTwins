@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
-using static DynamicLibrary;
+using static UnityEngine.XR.ARFoundation.Samples.DynamicLibrary;
 
 public class ResizeCanvas : MonoBehaviour
 {

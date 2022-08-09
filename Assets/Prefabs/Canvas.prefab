@@ -266,6 +266,7 @@ MonoBehaviour:
   thermometer: {fileID: 2924826944618648375, guid: 9b6f330a321ad5b47875d4a0fc00a612, type: 3}
   switchButton: {fileID: 8154119674625075294, guid: 23a2c002688ed644997a96e3d60f115e, type: 3}
   capsules: {fileID: 5085432366870971834, guid: 34923f3d733b51a4db72c4bc6d705f82, type: 3}
+  percentage: {fileID: 3233238999688608388, guid: 51c9ebac391f9c74a874415f82d6ec09, type: 3}
   actuatorBackground: {fileID: 2874088946236633589}
   sensorBackground: {fileID: 4950626553069473248}
   offsetSize: 1.5

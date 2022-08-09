@@ -509,9 +509,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1370639145}
   textLabel: {fileID: 1793089058}
+  manager: {fileID: 223974230}
+  imageManager: {fileID: 223974227}
   m_Images:
   - m_Texture: {fileID: 0}
-    m_Name: newImg
+    m_Name: sos
+    m_Width: 0.1
+  - m_Texture: {fileID: 0}
+    m_Name: sas
     m_Width: 0.1
 --- !u!114 &223974232
 MonoBehaviour:
@@ -924,7 +929,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 192.168.1.60
+  m_Text: 192.168.0.225
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0

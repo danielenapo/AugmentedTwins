@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation.Samples;
 
 public class HttpProxy : MonoBehaviour
 {

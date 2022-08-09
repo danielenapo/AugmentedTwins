@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
-    public GameObject button, slider, monitor, thermometer, switchButton, capsules;
+    public GameObject button, slider, monitor, thermometer, switchButton, capsules, percentage;
 	public GameObject actuatorBackground, sensorBackground;
 	public float offsetSize = 100f; //layout grid only works for UI elements, so offset is required for 3d objects
 
@@ -38,7 +38,6 @@ public class Factory : MonoBehaviour
 		newActuator.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 		newActuator.transform.parent = actuatorBackground.gameObject.transform;
 		newActuator.GetComponent<Actuator>().initialize(coapProxy, uri, label);
-
 	}
 
 
@@ -49,8 +48,10 @@ public class Factory : MonoBehaviour
 			newSensor = Instantiate(thermometer, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
 		else if (rt.Contains("capsules"))
 			newSensor = Instantiate(capsules, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
+		else if (rt.Contains("percentage"))
+			newSensor = Instantiate(percentage, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
 		else return;
-		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 50;
+		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 50;
 		newSensor.transform.parent = sensorBackground.gameObject.transform;
 		newSensor.GetComponent<Sensor>().initialize(coapProxy, uri, label);
 		newSensor.GetComponent<Sensor>().printData();
