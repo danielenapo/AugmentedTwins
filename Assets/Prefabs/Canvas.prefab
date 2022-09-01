@@ -262,13 +262,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 5567270654187652575, guid: 3126801965c984b46849cf9d87cdd86f, type: 3}
   slider: {fileID: 3399066335057778983, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
-  monitor: {fileID: 5587922977538807105}
+  monitor: {fileID: 3226949375413726384, guid: 5c426687b7a9c7043b369769dd11142e, type: 3}
   thermometer: {fileID: 2924826944618648375, guid: 9b6f330a321ad5b47875d4a0fc00a612, type: 3}
   switchButton: {fileID: 8154119674625075294, guid: 23a2c002688ed644997a96e3d60f115e, type: 3}
   capsules: {fileID: 5085432366870971834, guid: 34923f3d733b51a4db72c4bc6d705f82, type: 3}
   percentage: {fileID: 3233238999688608388, guid: 51c9ebac391f9c74a874415f82d6ec09, type: 3}
   actuatorBackground: {fileID: 2874088946236633589}
   sensorBackground: {fileID: 4950626553069473248}
+  monitorBackground: {fileID: 4234428132429483972}
   offsetSize: 1.5
 --- !u!114 &1361067442536757808
 MonoBehaviour:
@@ -727,7 +728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84.9, y: 0}
+  m_AnchoredPosition: {x: -84.9, y: 20}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5676114223256248933
@@ -756,7 +757,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 13.75
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0

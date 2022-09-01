@@ -79,8 +79,11 @@ public class CanvasBuilder : MonoBehaviour
 			ifType = entry.Value.Split(',')[2];
 			uri = entry.Key.Substring(1);   //tolgo la "/" all'inizio del nome della risorsa
 			if (ifType == "core.a")
+			{
 				factory.instantiateActuator(rt, uri, label);
-			else if (ifType=="core.s")
+				factory.instantiateSensor(rt, uri, label); //an actuator supports GET, POST and PUT operations, so it can be shown both as a button and a special sensor
+			}
+			else if (ifType == "core.s")
 			{
 				factory.instantiateSensor(rt, uri, label);
 			}
