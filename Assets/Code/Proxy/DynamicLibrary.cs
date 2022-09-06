@@ -18,14 +18,10 @@ namespace UnityEngine.XR.ARFoundation.Samples
     [RequireComponent(typeof(ARTrackedImageManager))]
     public class DynamicLibrary : MonoBehaviour
     {
-        public Button button;
         public TextMeshProUGUI textLabel;
         public ARTrackedImageManager manager;
         public ResizeCanvas imageManager;
-        public void Start()
-        {
-            button.onClick.AddListener(TaskOnClick);
-        }
+
         [Serializable]
         public class ImageData
         {
@@ -114,11 +110,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         StringBuilder m_StringBuilder = new StringBuilder();
 
-        //updates gui based on the state
-        void TaskOnClick()
-        {
-            PickImage();
-        }
+        
 
         void SetError(string errorMessage)
         {
@@ -254,7 +246,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         }
 
 
-        private void PickImage()//from gallery
+       /* private void PickImage()//from gallery
         {
             NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
             {
@@ -281,7 +273,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
                 }
             }, "", "image/*");
-        }
+        }*/
 
         //the funcion makes the newly imported texture readable
         private Texture2D AdaptTexture(Texture2D source)

@@ -11,10 +11,11 @@ public class Percentage : MonoBehaviour, Sensor
 
 	public Text valueText;
 	public TextMeshProUGUI labelText;
+	public GameObject indicator;
 	public void initialize(CoapProxy proxy, string uri, string label)
 	{
 		this.uri = uri;
-		this.label = label;
+		this.label = label.ToUpper();
 		this.proxy = proxy;
 		labelText.text = label;
 	}
@@ -25,6 +26,19 @@ public class Percentage : MonoBehaviour, Sensor
 		Dictionary<string, string> dict = JsonParser.parse(response)[0];
 		response = dict["v"];
 		valueText.text = response + "%";
+		try
+		{
+			float perc = float.Parse(response);
+			indicator.gameObject.transform.localScale= Vector3.Scale(indicator.gameObject.transform.localScale, new Vector3(1, (perc / 1000f), 1));
+
+
+		}
+		catch
+		{
+			indicator.gameObject.transform.localScale= Vector3.Scale(indicator.gameObject.transform.localScale,new Vector3(1, 0.5f, 1));
+
+		}
+
 	}
 
 }

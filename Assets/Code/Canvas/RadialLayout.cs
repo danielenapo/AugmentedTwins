@@ -25,7 +25,7 @@ THE SOFTWARE.
 public class RadialLayout : LayoutGroup
 {
     public float fDistance;
-    private float MinAngle, MaxAngle=360;
+    public  float MinAngle, MaxAngle;
     [Range(0f, 360f)]
     public float StartAngle;
     protected override void OnEnable() { base.OnEnable(); CalculateRadial(); }
@@ -48,7 +48,6 @@ public class RadialLayout : LayoutGroup
     {
         base.OnValidate();
         CalculateRadial();
-        minPosUpdate();
     }
 #endif
     void CalculateRadial()
@@ -92,12 +91,5 @@ public class RadialLayout : LayoutGroup
 
     }
 
-    void minPosUpdate()
-	{
-        if (transform.childCount < 5)
-            this.MaxAngle = 180;
-        else
-            this.MaxAngle = 360;
-        this.MinAngle = this.MaxAngle / transform.childCount;
-	}
+
 }

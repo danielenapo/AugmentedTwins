@@ -9,7 +9,6 @@ public class ResizeCanvas : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject ipInputText;
-    public Text deviceName;
     private ImageData[] images;
 
     [SerializeField]
