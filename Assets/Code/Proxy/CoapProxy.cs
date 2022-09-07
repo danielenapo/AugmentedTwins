@@ -17,7 +17,6 @@ public class CoapProxy : MonoBehaviour, CoapManager
     static AndroidJavaObject _pluginInstance;
     private string ip;
     private int port;
-    public GameObject monitor;
 
     public static AndroidJavaClass PluginClass
     {
@@ -31,10 +30,6 @@ public class CoapProxy : MonoBehaviour, CoapManager
         }
     }
 
-	public void Start()
-	{
-		//monitor = this.gameObject.transform.Find("Data").gameObject;
-    }
 
 	public string get(string resource)
 	{
@@ -47,8 +42,6 @@ public class CoapProxy : MonoBehaviour, CoapManager
         
         string status = PluginClass.CallStatic<string>("post", ip, resource, payload);
         Debug.Log("[DEB] Status post request: " + status);
-
-        monitor.GetComponent<MonitorDecorator>().printData();//after each post, a get is executed to show what changed
     }
 
     /*

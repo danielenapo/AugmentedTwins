@@ -15,12 +15,11 @@ public class StaticCanvasBuilder : MonoBehaviour
 
 	public GameObject monitor;
 	public GameObject labelText;
-	public GameObject actuatorBackground, sensorBackground;
+	public GameObject actuatorBackground, sensorBackground, monitorBackground;
 	public GameObject termomether, water, capsules;
 	public GameObject button, slider;
 
-	//test percentage
-	public GameObject PercIndicator;
+
 
 	public void Awake()
 	{
@@ -58,13 +57,11 @@ public class StaticCanvasBuilder : MonoBehaviour
 	{
 		var position = this.gameObject.transform.position;
 
-		GameObject newSensor;
 
 		//water
 		/*newSensor = Instantiate(water, position, this.gameObject.transform.rotation);
 		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 50;
 		newSensor.transform.parent = sensorBackground.gameObject.transform;*/
-		PercIndicator.gameObject.transform.localScale=Vector3.Scale(PercIndicator.gameObject.transform.localScale, new Vector3(1,78.0f/100f,1));
 
 
 
@@ -72,6 +69,13 @@ public class StaticCanvasBuilder : MonoBehaviour
 		newActuator = Instantiate(button, position, this.gameObject.transform.rotation);
 		newActuator.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
 		newActuator.transform.parent = actuatorBackground.gameObject.transform;
+
+		GameObject newSensor;
+		newSensor = Instantiate(monitor, position, this.gameObject.transform.rotation);
+		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 50;
+		newSensor.transform.parent = monitorBackground.gameObject.transform;
+
+
 
 	}
 

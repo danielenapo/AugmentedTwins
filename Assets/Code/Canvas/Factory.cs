@@ -26,23 +26,26 @@ public class Factory : MonoBehaviour
 	{
 		GameObject newActuator;
 
-		if (rt.Contains("btn"))
-			newActuator = Instantiate(button, thisPosition, this.gameObject.transform.rotation);
-		else if (rt.Contains("slider"))
+
+		if (rt.Contains("slider"))
 			newActuator = Instantiate(slider, thisPosition, this.gameObject.transform.rotation);
 		else if (rt.Contains("switch"))
 			newActuator = Instantiate(switchButton, thisPosition, this.gameObject.transform.rotation);
 		else
-			return;
+		{
+			newActuator = Instantiate(button, thisPosition, this.gameObject.transform.rotation); //default actuator is a button
+			newActuator.GetComponent<Actuator>().setSensor(instantiateSensor(rt, uri, label)); //an actuator supports GET, POST and PUT operations, so it can be shown both as a button and a special sensor (an actuator can be paired with a monitor)
+		}
 		Debug.Log("instantiated "+rt);
-		newActuator.transform.localScale = new Vector3(0.5f, 0.5f, 1) / 100;
+		newActuator.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 100;
 		newActuator.transform.parent = actuatorBackground.gameObject.transform;
 		newActuator.GetComponent<Actuator>().initialize(coapProxy, uri, label);
+
 	}
 
 
-	public void instantiateSensor(string rt, string uri, string label) {
-		//bool isMonitor = false;
+	public GameObject instantiateSensor(string rt, string uri, string label) {
+		bool isMonitor = false;
 		GameObject newSensor;
 		Vector3 position = sensorBackground.gameObject.transform.position;
 		if (rt == "temp3d")
@@ -52,21 +55,27 @@ public class Factory : MonoBehaviour
 		else if (rt.Contains("percentage"))
 			newSensor = Instantiate(percentage, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
 		else
-			return;
-		/*else
 		{
 			newSensor = Instantiate(monitor, new Vector3(position.x, position.y + offset, position.z), this.gameObject.transform.rotation);
-			isMonitor = true;
-		}*/
+			isMonitor = true; //if it's a monitor, it has to be a monitorBackground children and not sensorBackground
+		}
 
-		newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 50;
-		/*if(isMonitor==false)
+
+		if (isMonitor == false)
+		{
+			newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 50;
 			newSensor.transform.parent = sensorBackground.gameObject.transform;
-		else*/
-		newSensor.transform.parent = sensorBackground.gameObject.transform;
+		}
+		else
+		{
+			newSensor.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f) / 100;
+			newSensor.transform.parent = monitorBackground.gameObject.transform;
+		}
 		newSensor.GetComponent<Sensor>().initialize(coapProxy, uri, label);
 		newSensor.GetComponent<Sensor>().printData();
 		offset -= offsetSize;
+
+		return newSensor;
 
 	}
 

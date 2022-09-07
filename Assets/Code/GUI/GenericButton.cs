@@ -9,6 +9,8 @@ public class GenericButton : MonoBehaviour, Actuator
 	private CoapProxy proxy;
 	private string uri;
 	public Text labelText;
+	private GameObject monitor;
+
 
 	public void initialize(CoapProxy proxy, string uri, string label)
 	{
@@ -22,6 +24,8 @@ public class GenericButton : MonoBehaviour, Actuator
 	void TaskOnClick()
 	{
 		proxy.post(uri, null);
+		if (monitor != null)
+			monitor.GetComponent<Sensor>().printData();
 
 	}
 
@@ -30,5 +34,9 @@ public class GenericButton : MonoBehaviour, Actuator
 		return;
 	}
 
+	public void setSensor(GameObject sensor)
+	{
+		this.monitor = sensor;
+	}
 }
 

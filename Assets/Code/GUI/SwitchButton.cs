@@ -63,6 +63,10 @@ public class SwitchButton : MonoBehaviour, Actuator
 			value = false;
 		}
 	}
-
+	//the switch button doesen't need a sensor because it shows itself its current state
+	public void setSensor(GameObject sensor)
+	{
+		return;
+	}
 }
 

@@ -56,4 +56,10 @@ public class SliderDecorator : MonoBehaviour, IPointerUpHandler, Actuator
 			textValue.text = "0";
 		}
 	}
+
+	//slider doesen't need a sensor because it's numeric value is shown directly
+	public void setSensor(GameObject sensor)
+	{
+		return;
+	}
 }

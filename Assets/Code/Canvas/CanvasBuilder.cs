@@ -21,7 +21,6 @@ public class CanvasBuilder : MonoBehaviour
 	private int port;
 	private Factory factory;
 
-	public GameObject monitor;
 	public GameObject labelText;
 	public GameObject actuatorBackground;
 
@@ -63,12 +62,11 @@ public class CanvasBuilder : MonoBehaviour
 	 * - RT: per distinguere il tipo di prefab da istanziare (es. temp per il termometro, btn bottoni, slider, ...)
 	 * - TITLE: lo uso come label dell'interfaccia
 	 * - IF: per distinguere tra sensore (core.a) e attuatore (core.s)
-	 * NOTA: per i sensori, se non si conosce il valore dentro RT, lo aggiungo nel monitor
+	 * NOTA: per i sensori, se non si conosce il valore dentro RT, si crea un monitor (dataElement)
 	*/
 	public void instantiateInterfaces()
 	{
 		factory.initialize(discoveryDict, coapProxy);
-		monitor.GetComponent<MonitorDecorator>().initialize(coapProxy, null, null);
 		Vector3 thisPosition = this.gameObject.transform.position;
 		foreach (KeyValuePair<string, string> entry in discoveryDict)
 		{
@@ -81,19 +79,15 @@ public class CanvasBuilder : MonoBehaviour
 			if (ifType == "core.a")
 			{
 				factory.instantiateActuator(rt, uri, label);
-				factory.instantiateSensor(rt, uri, label); //an actuator supports GET, POST and PUT operations, so it can be shown both as a button and a special sensor
+
 			}
 			else if (ifType == "core.s")
 			{
 				factory.instantiateSensor(rt, uri, label);
 			}
 			else
-			{
-				monitor.GetComponent<MonitorDecorator>().setUri(uri);
-				monitor.GetComponent<MonitorDecorator>().setLabel(label);
-			}
+				return;
 		}
-		monitor.GetComponent<MonitorDecorator>().printData();
 	}
 
 	//rerizes canvas according to the image size
