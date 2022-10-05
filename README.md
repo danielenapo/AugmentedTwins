@@ -4,17 +4,18 @@ This project was made for my Bachelor degree thesis, named "Digital Twins and Au
 
 ## How it works
 The app recognises images in the real world, wich are associated to the ip of a CoAP server. The server communicates with the app, telling what sensors and actuators are available. The app then creates an AR interface based on that informations, and displays it on top of the image.<br><br>
-![thesis img](https://github.com/danielenapo/AugmentedTwins/blob/master/airConditioner.gif)
+![thesis img](https://github.com/danielenapo/AugmentedTwins/blob/master/coffeeMachine.gif)<br>
+![thesis img](https://github.com/danielenapo/AugmentedTwins/blob/master/airConditioner.gif)<br>
 
 ## Import project
 The files in this repo are part of a Unity project, so just import all the files in Unity (editor version 2020.3.14f1)<br>
 All the useful files are found in the Assets folder. Here's a quick info on the type of files you will find in this project:
 - <b>PREFABS:</b> (Assets/prefabs) the "prefabs" that are instantiated as 3D objects (or UI elements) by the Factory class.
 - <b>PLUGIN:</b> (Assets/Plugins/Android) the native plugin pre-compiled in Java. the source code is in [this repo.](https://github.com/danielenapo/CoAPClientPlugin_thesis)
-- <b>CODE FILES:</b> (Assets/code) All in C#, they follow this class diagram:
+- <b>CODE FILES:</b> (Assets/code) All in C#, the folders are divided in modules, you can follow this [class diagram](https://github.com/danielenapo/AugmentedTwins/blob/master/Assets/Code/classDiagram.png) to understand code architecture and structure.
 
 ## Software architecture
-
+![architecture](https://github.com/danielenapo/AugmentedTwins/blob/master/schema.png)
 
 ## Related repositories
 This repository only contains the Unity project of the client AR part of the whole software system.<br>
