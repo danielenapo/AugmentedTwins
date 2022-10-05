@@ -4,7 +4,7 @@ This project was made for my Bachelor degree thesis, named "Digital Twins and Au
 
 ## How it works
 The app recognises images in the real world, wich are associated to the ip of a CoAP server. The server communicates with the app, telling what sensors and actuators are available. The app then creates an AR interface based on that informations, and displays it on top of the image.<br><br>
-![thesis img](https://github.com/danielenapo/danielenapo.github.io/blob/master/images/thesis.png)
+![thesis img](https://github.com/danielenapo/AugmentedTwins/blob/master/airConditioner.gif)
 
 
 ## Related repositories
