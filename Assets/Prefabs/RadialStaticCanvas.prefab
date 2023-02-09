@@ -455,12 +455,12 @@ MonoBehaviour:
   labelText: {fileID: 84550716854084131}
   actuatorBackground: {fileID: 84550716701502807}
   sensorBackground: {fileID: 84550716133950630}
+  monitorBackground: {fileID: 0}
   termomether: {fileID: 2924826944618648375, guid: 9b6f330a321ad5b47875d4a0fc00a612, type: 3}
   water: {fileID: 3233238999688608388, guid: 51c9ebac391f9c74a874415f82d6ec09, type: 3}
   capsules: {fileID: 5085432366870971834, guid: 34923f3d733b51a4db72c4bc6d705f82, type: 3}
   button: {fileID: 5567270654187652575, guid: 3126801965c984b46849cf9d87cdd86f, type: 3}
   slider: {fileID: 3399066335057778983, guid: a8bdacc7a1bc8544e94fccaaa25a14cc, type: 3}
-  PercIndicator: {fileID: 0}
 --- !u!1 &84550716854084131
 GameObject:
   m_ObjectHideFlags: 0

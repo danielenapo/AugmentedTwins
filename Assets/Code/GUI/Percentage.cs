@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Percentage : MonoBehaviour, Sensor
 {
 	private CoapProxy proxy;
 	private string uri, label;
 
-	public Text valueText;
-	public TextMeshProUGUI labelText;
+	public TextMeshProUGUI labelText, valueText;
 	public GameObject indicator;
 	public void initialize(CoapProxy proxy, string uri, string label)
 	{
 		this.uri = uri;
 		this.label = label.ToUpper();
 		this.proxy = proxy;
-		labelText.text = label;
+		labelText.text = this.label;
 	}
 
 	public void printData()

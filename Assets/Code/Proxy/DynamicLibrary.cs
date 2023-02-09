@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+    dinamically adds image to the ImageLibrary, and defines the class that contains all the data relative to the device (image in Texture2D format, ip/protocol/port, ...)
+    (informations gathered by HTTP request to local server when starting the app)
+*/
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;

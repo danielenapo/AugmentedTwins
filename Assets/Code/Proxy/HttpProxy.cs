@@ -25,6 +25,12 @@ public class HttpProxy : MonoBehaviour
 
     /*ESEMPIO DI RISPOSTA DELL'API:
     * [{"uuid":"device00001","protocol":"coap","ip":"localhost","port":7252,"image":"base64/...","displayName":"Coffee machine"}]
+    - uuid: codice identificativo del dispositivo
+    - protocol: protocollo di comunicazione (si ipotizza essere CoAP per questo progetto)
+    - ip: indirizzo locale del dispositivo
+    - port: porta del protocollo (standard CoAP è 7252)
+    - image: immagine identificativa, codificata in base64
+    - displayName: testo human-readable che verrà mostrato nel label del canvas
     */
     IEnumerator getRequest(string uri)
     {

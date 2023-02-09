@@ -1,3 +1,7 @@
+/*
+    Class with all the event listeners classes for AR funtionalities. Responsible to detect a new scanned image, and to call the canvasBuilder 
+    (with the estimated real-life size)
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +27,7 @@ public class ResizeCanvas : MonoBehaviour
 
     void OnDisable() => m_TrackedImageManager.trackedImagesChanged -= OnChanged;
 
+    //metodo che viene chiamato quando viene inquadrata per la prima volta una nuova immagine dell'imageLibrary
     void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
         foreach (var newImage in eventArgs.added)

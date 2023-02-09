@@ -1,3 +1,7 @@
+/*
+	Class called by CanvasBuilder, it's responsible of the instantiation of single objects to attach to the canvas.
+	Has 2 methods (instantiateActuator and instantiateSensor), depending on the type of object
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
